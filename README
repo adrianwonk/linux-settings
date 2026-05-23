@@ -1,3 +1,4 @@
 Must do these following symlinks first:
-    ln -sf config_files/sway ~/.config/sway/config
-    ln -sf config_files/vim ~/.vimrc
+    ln -sf ~/config_files/sway ~/.config/sway/config
+    ln -sf ~/config_files/vim ~/.vimrc
+    ln -sf ~/config_files/nvim.lua ~/.config/nvim/init.lua
