@@ -1,7 +1,3 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Repository Purpose
 
 Personal dotfiles for a CachyOS (Arch-based) Linux system running Sway. The files in this directory are the source of truth; they get symlinked into their expected locations on the host (see README).

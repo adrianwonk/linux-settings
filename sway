@@ -1,20 +1,31 @@
+#waybar timer setup
+exec_always \
+    waybar_timer serve;\
+    pkill -x waybar;\
+    waybar;\
+    notify-send "sway" "\(re\)loaded"
+
 # Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
 # Read `man 5 sway` for a complete reference.
-exec_always --no-startup-id sh -c 'pgrep -x waybar || waybar' 
+
 # transparency values
 for_window [app_id="firefox"] opacity 0.9
 for_window [app_id="brave"] opacity 0.9
 
 output HDMI-A-2 pos 0 0
+output HDMI-A-2 scale 0.8
+output eDP-1 scale 1
+output DP-2 scale 1.5
 
 
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+#
+
+bindsym $mod+n output eDP-1 disable
+bindsym $mod+m output eDP-1 enable
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -22,6 +33,7 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term kitty
+#set $term /home/adrianw/.config/sway/terminal-launch.sh
 # Your preferred application launcher
 set $menu rofi -show run
 
@@ -58,17 +70,17 @@ input type:touchpad {
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
-    scroll_factor 0.75
+    scroll_factor 0.45
 }
 
 input type:keyboard {
     xkb_layout "us"
-    xkb_options "ctrl:swapcaps"
+    xkb_options "ctrl:nocaps"
 }
 
 focus_wrapping no
 
-font pango:FiraCode Nerd Font 10
+font pango:FiraCode Nerd Font 16
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
 
@@ -76,6 +88,8 @@ font pango:FiraCode Nerd Font 10
 #
 # Basics:
 #
+    # screenshot with F7
+    bindsym XF86Display exec grimshot --notify copy active
     # Start a terminal
     bindsym $mod+Return exec $term
 
@@ -86,6 +100,9 @@ font pango:FiraCode Nerd Font 10
     bindsym $mod+d exec $menu
     bindsym $mod+o exec firefox
     bindsym $mod+p exec brave
+    bindsym $mod+q exec waybar_timer increase 300 
+    bindsym $mod+a exec waybar_timer new 20 'notify-send -u critical "waybar_timer" "60 mins up"'
+    bindsym $mod+z exec waybar_timer decrease 300
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -173,7 +190,7 @@ font pango:FiraCode Nerd Font 10
     bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    # bindsym $mod+z focus parent
 #
 # Scratchpad:
 #
