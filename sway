@@ -1,9 +1,7 @@
 #waybar timer setup
-exec_always \
-    waybar_timer serve;\
-    pkill -x waybar;\
-    waybar;\
-    notify-send "sway" "\(re\)loaded"
+exec_always 'waybar_timer serve'
+exec_always sh -c 'pgrep -x waybar || waybar'
+exec_always 'notify-send "sway" "\(re\)loaded"'
 
 # Default config for sway
 # Read `man 5 sway` for a complete reference.
@@ -101,7 +99,7 @@ font pango:FiraCode Nerd Font 16
     bindsym $mod+o exec firefox
     bindsym $mod+p exec brave
     bindsym $mod+q exec waybar_timer increase 300 
-    bindsym $mod+a exec waybar_timer new 20 'notify-send -u critical "waybar_timer" "60 mins up"'
+    bindsym $mod+a exec waybar_timer new 20 'notify-send -u critical "waybar_timer" "done"'
     bindsym $mod+z exec waybar_timer decrease 300
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
