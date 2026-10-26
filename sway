@@ -11,9 +11,9 @@ for_window [app_id="firefox"] opacity 0.9
 for_window [app_id="brave"] opacity 0.9
 
 output HDMI-A-2 pos 0 0
-output HDMI-A-2 scale 0.8
+output HDMI-A-2 scale 1.2
 output eDP-1 scale 1
-output DP-2 scale 1.5
+output DP-2 scale 1
 
 
 ### Variables
